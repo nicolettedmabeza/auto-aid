@@ -38,7 +38,7 @@ const TechnicianForm = () => {
 		<div className="row">
 			<div className="offset-3 col-6">
 				<div className="shadow p-4 mt-4">
-					<h1>New Technician</h1>
+					<h1 className="text-center">New Technician</h1>
 					<form id="create-technician-form" onSubmit={handleSubmit}>
 						<div className="form-floating mb-3">
 							<input
@@ -64,8 +64,9 @@ const TechnicianForm = () => {
 							/>
 							<label htmlFor="employeeNumber">Employee Number</label>
 						</div>
-
-						<button className="btn btn-primary">Create</button>
+						<div className="col text-center">
+							<button className="btn btn-primary">Create</button>
+						</div>
 					</form>
 				</div>
 			</div>

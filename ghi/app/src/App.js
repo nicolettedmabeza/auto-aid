@@ -7,6 +7,7 @@ import ManufacturerList from "./ManufacturerList";
 import Nav from "./Nav";
 import ServiceHistory from "./ServiceHistory";
 import TechnicianForm from "./TechnicianForm";
+import VehicleModelForm from "./VehicleModelForm";
 import VehicleModelList from "./VehicleModelList";
 
 function App() {
@@ -28,7 +29,7 @@ function App() {
 					</Route>
 					<Route path="models/">
 						<Route path="" element={<VehicleModelList />} />
-						{/* <Route path="new/" element={<ManufacturerForm />} /> */}
+						<Route path="new/" element={<VehicleModelForm />} />
 					</Route>
 				</Routes>
 			</div>

@@ -64,7 +64,7 @@ const AppointmentForm = () => {
 			<div className="offset-3 col-6">
 				{!submitted && (
 					<div className="shadow p-4 mt-4">
-						<h1>Create a New Appointment</h1>
+						<h1 className="text-center">Create a New Appointment</h1>
 						<form id="create-appointment-form" onSubmit={handleSubmit}>
 							<div className="form-floating mb-3">
 								<input
@@ -128,7 +128,9 @@ const AppointmentForm = () => {
 									name="reason"
 									className="form-control"></textarea>
 							</div>
-							<button className="btn btn-primary">Create</button>
+							<div className="col text-center">
+								<button className="btn btn-primary">Create</button>
+							</div>
 						</form>
 					</div>
 				)}

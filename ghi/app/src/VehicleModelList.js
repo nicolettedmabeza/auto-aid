@@ -18,7 +18,7 @@ const VehicleModelList = () => {
 	}, []);
 
 	return (
-		<div className="container mt-5">
+		<div className="container mt-3">
 			<div className="row row-cols-1 row-cols-md-2 g-4 t-5 m-2">
 				{models.map((model) => {
 					return (

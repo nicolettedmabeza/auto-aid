@@ -22,15 +22,13 @@ const ManufacturerList = () => {
 			<div className="row gy-5">
 				{manufacturers.map((manufacturer) => {
 					return (
-						// <div class="container overflow-hidden">
-						// 	<div class="row gy-5">
-						<div class="col-6 mb-2 text-center text-white">
-							<div class="p-3 border shadow bg-success">
+						<div
+							key={manufacturer.href}
+							className="col-6 mb-2 text-center text-white">
+							<div className="p-3 border shadow bg-secondary">
 								{manufacturer.name}
 							</div>
 						</div>
-						// 		</div>
-						// 	</div>
 					);
 				})}
 			</div>
