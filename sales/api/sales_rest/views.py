@@ -264,5 +264,5 @@ def api_list_automobiles(request):
         automobiles = AutomobileVO.objects.filter(has_sold=False)
         return JsonResponse(
             {"automobiles": automobiles},
-            encoder=AutomobileVO,
+            encoder=AutomobileVOEncoder,
         )

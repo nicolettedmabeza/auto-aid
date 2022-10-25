@@ -13,10 +13,10 @@ from .views import (
 urlpatterns = [
     path("salespeople/", api_list_sales_people, name="api_sales_people"),
     path("salespeople/<int:pk>/", api_show_sales_person, name="api_show_sales_person"),
+    path("salespeople/<int:employee_id>/salesrecords/", api_list_sales_records, name="api_sales_person_sales_records"),
     path("customers/", api_list_customers, name="api_customers"),
     path("customers/<int:pk>/", api_show_customer, name="api_show_customer"),
     path("salesrecords/", api_list_sales_records, name="api_sales_records"),
     path("salesrecords/<int:pk>/", api_show_sales_record, name="api_show_sales_record"),
-    path("salesrecords/<int:employee_id>/salespeople/", api_list_sales_records, name="api_sales_person_sales_records"),
     path("automobiles/", api_list_automobiles, name="api_automobiles"),
 ]
