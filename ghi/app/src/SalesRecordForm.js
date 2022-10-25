@@ -17,7 +17,6 @@ const SalesRecordForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 setAutomobiles(data.automobiles);
             }
         }
@@ -31,7 +30,6 @@ const SalesRecordForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 setSalesPeople(data.sales_people);
             }
         }
@@ -45,7 +43,6 @@ const SalesRecordForm = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 setCustomers(data.customers);
             }
         }
@@ -57,9 +54,8 @@ const SalesRecordForm = () => {
         const data = { automobile, salesPerson, customer, price };
         data.sales_person = data.salesPerson;
         data.price = parseInt(data.price);
-
         delete data.salesPerson;
-        console.log(data);
+
 
         const salesRecordUrl = "http://localhost:8090/api/salesrecords/";
         const fetchConfig = {
@@ -73,7 +69,6 @@ const SalesRecordForm = () => {
         const response = await fetch(salesRecordUrl, fetchConfig);
         if (response.ok) {
             const newSalesRecord = await response.json();
-            console.log(newSalesRecord);
             setAutomobile("");
             setSalesPerson("");
             setCustomer("");
@@ -87,7 +82,7 @@ const SalesRecordForm = () => {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Create a New Sales Record</h1>
-                    <form id="create-presentation-form" onSubmit={handleSubmit}>
+                    <form id="create-new-sales-record-form" onSubmit={handleSubmit}>
                     <div className="mb-3">
 							<select
 								onChange={(e) => setAutomobile(e.target.value)}

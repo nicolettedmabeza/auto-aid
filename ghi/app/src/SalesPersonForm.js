@@ -9,9 +9,8 @@ const SalesPersonForm = () => {
         event.preventDefault();
         const data = { name, employeeNumber };
         data.employee_number = data.employeeNumber;
-
         delete data.employeeNumber;
-        console.log(data);
+
 
         const salesPersonUrl = "http://localhost:8090/api/salespeople/";
         const fetchConfig = {
@@ -25,7 +24,6 @@ const SalesPersonForm = () => {
         const response = await fetch(salesPersonUrl, fetchConfig);
         if (response.ok) {
             const newSalesPerson = await response.json();
-            console.log(newSalesPerson);
             setName("");
             setEmployeeNumber("");
             setSubmitted(true);
@@ -37,7 +35,7 @@ const SalesPersonForm = () => {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Create a New Sales Person</h1>
-                    <form id="create-presentation-form" onSubmit={handleSubmit}>
+                    <form id="create-new-sales-person-form" onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input
                                 onChange={(e) => setName(e.target.value)}

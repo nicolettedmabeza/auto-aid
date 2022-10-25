@@ -10,7 +10,6 @@ const SalesList = () => {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log(data);
                 setSalesList(data.sales_records);
             }
         }

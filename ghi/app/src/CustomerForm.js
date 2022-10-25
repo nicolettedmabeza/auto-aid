@@ -10,9 +10,7 @@ const CustomerForm = () => {
         event.preventDefault();
         const data = { name, address, phoneNumber };
         data.phone_number = data.phoneNumber;
-
         delete data.phoneNumber;
-        console.log(data);
 
         const salesPersonUrl = "http://localhost:8090/api/customers/";
         const fetchConfig = {
@@ -26,7 +24,6 @@ const CustomerForm = () => {
         const response = await fetch(salesPersonUrl, fetchConfig);
         if (response.ok) {
             const newCustomer = await response.json();
-            console.log(newCustomer);
             setName("");
             setAddress("");
             setPhoneNumber("");
@@ -39,7 +36,7 @@ const CustomerForm = () => {
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
                     <h1>Create a New Customer</h1>
-                    <form id="create-presentation-form" onSubmit={handleSubmit}>
+                    <form id="create-new-customer-form" onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input
                                 onChange={(e) => setName(e.target.value)}

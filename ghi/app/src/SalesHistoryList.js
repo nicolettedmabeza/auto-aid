@@ -36,7 +36,7 @@ const SalesHistoryList = () => {
       <h1>Sales Person Sale History</h1>
       <select
         onChange={handleChange}
-        id="saleshistory"
+        id="sales-person-sales-history"
         name="Sales Person"
         className="form-select">
         <option value="">Choose a Sales Person</option>
