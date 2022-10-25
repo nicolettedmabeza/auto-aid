@@ -204,18 +204,22 @@ def api_list_sales_records(request, employee_id=None):
             auto_vin = content["automobile"]
             automobile = AutomobileVO.objects.get(vin=auto_vin)
             content["automobile"] = automobile
-            automobile.has_sold = True
-            automobile.save()
+            print("automobile here")
 
             employee_id = content["sales_person"]
             sales_person = SalesPerson.objects.get(id=employee_id)
             content["sales_person"] = sales_person
+            print("sales_person here")
 
             customer_id = content["customer"]
             customer = Customer.objects.get(id=customer_id)
             content["customer"] = customer
+            print("customer here")
 
             sales_record = SalesRecord.objects.create(**content)
+            print(sales_record)
+            automobile.has_sold = True
+            automobile.save()
             return JsonResponse(
                 sales_record,
                 encoder=SalesRecordEncoder,

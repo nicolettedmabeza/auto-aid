@@ -44,4 +44,4 @@ class SalesRecord(models.Model):
         on_delete = models.CASCADE,
     )
 
-    price = models.PositiveSmallIntegerField()
+    price = models.PositiveIntegerField()

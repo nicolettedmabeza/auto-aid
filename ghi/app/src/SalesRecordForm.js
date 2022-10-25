@@ -55,11 +55,10 @@ const SalesRecordForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = { automobile, salesPerson, customer, price };
-        data.sales_people = data.salesPerson;
+        data.sales_person = data.salesPerson;
+        data.price = parseInt(data.price);
 
-        delete data.automobile;
         delete data.salesPerson;
-        delete data.customer;
         console.log(data);
 
         const salesRecordUrl = "http://localhost:8090/api/salesrecords/";
@@ -95,7 +94,8 @@ const SalesRecordForm = () => {
 								required
 								name="Automobile"
 								id="automobile"
-								className="form-select">
+								className="form-select"
+                                value={automobile}>
 								<option value="">Select an Automobile</option>
 								{automobiles.map((automobile) => {
 									return (
@@ -112,7 +112,8 @@ const SalesRecordForm = () => {
 								required
 								name="Sales Person"
 								id="sales_people"
-								className="form-select">
+								className="form-select"
+                                value={salesPerson}>
 								<option value="">Select a Sales Person</option>
 								{salesPeople.map((salesPerson) => {
 									return (
@@ -129,7 +130,8 @@ const SalesRecordForm = () => {
 								required
 								name="Customer"
 								id="customer"
-								className="form-select">
+								className="form-select"
+                                value={customer}>
 								<option value="">Select a Customer</option>
 								{customers.map((customer) => {
 									return (
