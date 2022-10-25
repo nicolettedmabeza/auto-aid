@@ -19,7 +19,8 @@ def list_appointments(request):
         content = json.loads(request.body)
         try:
             tech_id = content["technician_id"]
-            tech = Technician.objects.get(pk=tech_id)
+            tech = Technician.objects.get(id=tech_id)
+            content["technician"] = tech
 
         except Technician.DoesNotExist:
             return JsonResponse(
