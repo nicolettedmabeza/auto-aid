@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/free-regular-svg-icons";
 
 const AppointmentsList = () => {
 	const [appointments, setAppointments] = useState([]);
@@ -49,92 +48,61 @@ const AppointmentsList = () => {
 		}
 	};
 
-	// const handleSubmit = async (event) => {
-	// 	event.preventDefault();
-	// 	const data = { name, email, selectedConference };
-	// 	data.conference = data.selectedConference;
-
-	// 	delete data.selectedConference;
-
-	// 	console.log(data);
-
-	// 	const attendeeUrl = "http://localhost:8001/api/attendees/";
-	// 	const fetchConfig = {
-	// 		method: "post",
-	// 		body: JSON.stringify(data),
-	// 		headers: {
-	// 			"Content-Type": "application/json",
-	// 		},
-	// 	};
-
-	// 	const response = await fetch(attendeeUrl, fetchConfig);
-	// 	if (response.ok) {
-	// 		const newAttendee = await response.json();
-	// 		console.log(newAttendee);
-
-	// 		setNames("");
-	// 		setEmails("");
-	// 		setSelectedConference("");
-	// 		setSubmitted(true);
-	// 	}
-	// };
-
 	return (
-		<table className="table table-striped">
-			<thead>
-				<tr>
-					<th>Owner</th>
-					<th>Vin</th>
-					<th>Date</th>
-					<th>Time</th>
-					<th>Technician</th>
-					<th>Reason</th>
-					<th>Vip</th>
-				</tr>
-			</thead>
-			<tbody>
-				{appointments.map((appointment) => {
-					return (
-						<tr key={appointment.id}>
-							<td>{appointment.owner}</td>
-							<td>{appointment.vin}</td>
-							<td>
-								{new Date(appointment.date_time).toLocaleDateString("en-US")}
-							</td>
-							<td>
-								{new Date(appointment.date_time).toLocaleTimeString([], {
-									hour: "2-digit",
-									minute: "2-digit",
-								})}
-							</td>
-							<td>{appointment.technician.name}</td>
-							<td>{appointment.reason}</td>
-							<td>
-								{appointment.vip ? (
-									<FontAwesomeIcon icon="fa-solid fa-star" />
-								) : (
-									<FontAwesomeIcon icon="fa-regular fa-star" />
-								)}
-							</td>
-							<td>
-								<button
-									onClick={(e) => deleteAppointment(appointment.id)}
-									className="btn btn-secondary m-2">
-									Delete
-								</button>
-								{!appointment.finished && (
+		<>
+			<div className="px-4 py-5 my-1 mt-0 text-center">
+				<h1 className="display-5">Appointment List</h1>
+			</div>
+			<table className="table table-striped">
+				<thead>
+					<tr>
+						<th>Owner</th>
+						<th>Vin</th>
+						<th>Date</th>
+						<th>Time</th>
+						<th>Technician</th>
+						<th>Reason</th>
+						<th>Vip</th>
+					</tr>
+				</thead>
+				<tbody>
+					{appointments.map((appointment) => {
+						return (
+							<tr key={appointment.id}>
+								<td>{appointment.owner}</td>
+								<td>{appointment.vin}</td>
+								<td>
+									{new Date(appointment.date_time).toLocaleDateString("en-US")}
+								</td>
+								<td>
+									{new Date(appointment.date_time).toLocaleTimeString([], {
+										hour: "2-digit",
+										minute: "2-digit",
+									})}
+								</td>
+								<td>{appointment.technician.name}</td>
+								<td>{appointment.reason}</td>
+								<td>{appointment.vip ? "Yes" : "No"}</td>
+								<td>
 									<button
-										onClick={(e) => finishAppointment(appointment.id)}
-										className="btn btn-primary">
-										Finished
+										onClick={(e) => deleteAppointment(appointment.id)}
+										className="btn btn-secondary m-2">
+										Delete
 									</button>
-								)}
-							</td>
-						</tr>
-					);
-				})}
-			</tbody>
-		</table>
+									{!appointment.finished && (
+										<button
+											onClick={(e) => finishAppointment(appointment.id)}
+											className="btn btn-primary">
+											Finished
+										</button>
+									)}
+								</td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
+		</>
 	);
 };
 
