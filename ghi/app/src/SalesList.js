@@ -21,9 +21,9 @@ const SalesList = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Sales Person's Name</th>
+              <th>Sales Person</th>
               <th>Employee Number</th>
-              <th>Customer Name</th>
+              <th>Customer</th>
               <th>Automobile VIN</th>
               <th>Sale Price</th>
             </tr>
