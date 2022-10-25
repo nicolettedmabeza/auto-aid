@@ -73,15 +73,6 @@ def show_appointment(request, pk):
             return response
     else:  # PUT
         content = json.loads(request.body)
-        try:
-            tech_id = content["technician_id"]
-            tech = Technician.objects.get(pk=tech_id)
-
-        except Technician.DoesNotExist:
-            return JsonResponse(
-                {"message": "Invalid technician id"}
-            )
-
         Appointment.objects.filter(id=pk).update(**content)
         appointment = Appointment.objects.get(id=pk)
         return JsonResponse(
@@ -143,7 +134,6 @@ def show_technician(request, pk):
             return response
     else:  # PUT
         content = json.loads(request.body)
-
         Technician.objects.filter(id=pk).update(**content)
         technician = Technician.objects.get(id=pk)
         return JsonResponse(

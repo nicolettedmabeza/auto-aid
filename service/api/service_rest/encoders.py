@@ -10,6 +10,7 @@ class TechnicianEncoder(ModelEncoder):
 class AppointmentEncoder(ModelEncoder):
     model = Appointment
     properties = [
+        "id",
         "vin",
         "owner",
         "date_time",

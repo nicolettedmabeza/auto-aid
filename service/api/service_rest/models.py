@@ -32,5 +32,5 @@ class Appointment(models.Model):
     vip = models.BooleanField(default=False)
     finished = models.BooleanField(default=False)
 
-    # def get_api_url(self):
-    #     return reverse('show_appointment', kwargs={"pk": self.id})
+    def get_api_url(self):
+        return reverse('show_appointment', kwargs={"pk": self.id})
