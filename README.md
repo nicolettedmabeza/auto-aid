@@ -2,8 +2,8 @@
 
 Team:
 
-* Person 1 - Which microservice?
-* Person 2 - Which microservice?
+* Person 1 (Nicolette) - Automobile services
+* Person 2 (Cindy) - Auto Sales
 
 ## Design
 
