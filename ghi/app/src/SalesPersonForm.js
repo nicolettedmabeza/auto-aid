@@ -1,20 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const SalesPersonForm = () => {
     const [name, setName] = useState("");
     const [employeeNumber, setEmployeeNumber] = useState("");
     const [submitted, setSubmitted] = useState(false);
-
-    // useEffect(async () => {
-    //     const url = "http://localhost:8090/api/salespeople/";
-    //     const response = await fetch(url);
-
-    //     if (response.ok) {
-    //         const data = await response.json();
-    //         console.log(data);
-    //         setBins(data.bins);
-    //     }
-    // }, []);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -37,7 +26,6 @@ const SalesPersonForm = () => {
         if (response.ok) {
             const newSalesPerson = await response.json();
             console.log(newSalesPerson);
-            // event.target.reset();
             setName("");
             setEmployeeNumber("");
             setSubmitted(true);
