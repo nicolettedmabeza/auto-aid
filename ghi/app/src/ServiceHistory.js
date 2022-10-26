@@ -61,7 +61,7 @@ const ServiceHistory = () => {
 					</div>
 				</div>
 			</div>
-			{searchSuccessful && (
+			{appointments.length > 0 && (
 				<table className="table table-striped">
 					<thead>
 						<tr>
@@ -99,6 +99,11 @@ const ServiceHistory = () => {
 						})}
 					</tbody>
 				</table>
+			)}
+			{appointments.length <= 0 && (
+				<div className="alert alert-danger mb-0 p-4 mt-4" id="danger-message">
+					The VIN you entered has no appointment history.
+				</div>
 			)}
 		</React.Fragment>
 	);
