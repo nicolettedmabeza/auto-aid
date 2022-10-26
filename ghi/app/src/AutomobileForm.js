@@ -25,7 +25,7 @@ const AutomobileForm = () => {
         event.preventDefault();
         const data = { color, year, vin, model };
         data.year = parseInt(data.year);
-        data.model_id = data.model;
+        data.model_id = parseInt(data.model);
         delete data.model;
 
 
@@ -53,9 +53,9 @@ const AutomobileForm = () => {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Add an Automobile to Inventory</h1>
+                    <h1>Create a New Automobile</h1>
                     <form id="add-automobile-form" onSubmit={handleSubmit}>
-                    <div className="form-floating mb-3">
+                        <div className="form-floating mb-3">
                             <input
                                 onChange={(e) => setColor(e.target.value)}
                                 placeholder="Color"
@@ -67,8 +67,8 @@ const AutomobileForm = () => {
                                 value={color}
                             />
                             <label htmlFor="color">Color</label>
-                    </div>
-                    <div className="form-floating mb-3">
+                        </div>
+                        <div className="form-floating mb-3">
                             <input
                                 onChange={(e) => setYear(e.target.value)}
                                 placeholder="Year"
@@ -80,8 +80,8 @@ const AutomobileForm = () => {
                                 value={year}
                             />
                             <label htmlFor="year">Year</label>
-                    </div>
-                    <div className="form-floating mb-3">
+                        </div>
+                        <div className="form-floating mb-3">
                             <input
                                 onChange={(e) => setVin(e.target.value)}
                                 placeholder="VIN"
@@ -93,27 +93,32 @@ const AutomobileForm = () => {
                                 value={vin}
                             />
                             <label htmlFor="vin">VIN</label>
-                    </div>
-                    <div className="mb-3">
-							<select
-								onChange={(e) => setModel(e.target.value)}
-								required
-								name="Model"
-								id="model"
-								className="form-select"
+                        </div>
+                        <div className="mb-3">
+                            <select
+                                onChange={(e) => setModel(e.target.value)}
+                                required
+                                name="Model"
+                                id="model"
+                                className="form-select"
                                 value={model}>
-								<option value="">Select an Model</option>
-								{models.map((model) => {
-									return (
-										<option key={model.id} value={model.id}>
-											{model.name}
-										</option>
-									);
-								})}
-							</select>
-						</div>
+                                <option value="">Select an Model</option>
+                                {models.map((model) => {
+                                    return (
+                                        <option key={model.id} value={model.id}>
+                                            {model.name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
+                    {submitted && (
+                        <div className="alert alert-success mb-0 p-4 mt-4" id="success-message">
+                            Your automobile has been created!
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

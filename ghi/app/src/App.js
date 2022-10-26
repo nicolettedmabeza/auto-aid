@@ -39,12 +39,12 @@ function App() {
 						<Route path="new/" element={<VehicleModelForm />} />
 					</Route>
 					<Route path="/salespeople/new" element={<SalesPersonForm />} />
-          <Route path="/customers/new" element={<CustomerForm />} />
-          <Route path="/sales/" element={<SalesList />} />
-          <Route path="/sales/new" element={<SalesRecordForm />} />
-          <Route path="/sales/history" element={<SalesHistoryList />} />
-          <Route path="/automobiles/" element={<AutomobileList />} />
-          <Route path="/automobiles/new" element={<AutomobileForm />} />
+					<Route path="/customers/new" element={<CustomerForm />} />
+					<Route path="/sales/list" element={<SalesList />} />
+					<Route path="/sales/new" element={<SalesRecordForm />} />
+					<Route path="/sales/history" element={<SalesHistoryList />} />
+					<Route path="/automobiles/" element={<AutomobileList />} />
+					<Route path="/automobiles/new" element={<AutomobileForm />} />
 				</Routes>
 			</div>
 		</BrowserRouter>

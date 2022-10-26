@@ -83,60 +83,60 @@ const SalesRecordForm = () => {
                 <div className="shadow p-4 mt-4">
                     <h1>Create a New Sales Record</h1>
                     <form id="create-new-sales-record-form" onSubmit={handleSubmit}>
-                    <div className="mb-3">
-							<select
-								onChange={(e) => setAutomobile(e.target.value)}
-								required
-								name="Automobile"
-								id="automobile"
-								className="form-select"
+                        <div className="mb-3">
+                            <select
+                                onChange={(e) => setAutomobile(e.target.value)}
+                                required
+                                name="Automobile"
+                                id="automobile"
+                                className="form-select"
                                 value={automobile}>
-								<option value="">Select an Automobile</option>
-								{automobiles.map((automobile) => {
-									return (
-										<option key={automobile.vin} value={automobile.vin}>
-											{automobile.vin}
-										</option>
-									);
-								})}
-							</select>
-						</div>
+                                <option value="">Select an Automobile</option>
+                                {automobiles.map((automobile) => {
+                                    return (
+                                        <option key={automobile.vin} value={automobile.vin}>
+                                            {automobile.vin}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>
                         <div className="mb-3">
-							<select
-								onChange={(e) => setSalesPerson(e.target.value)}
-								required
-								name="Sales Person"
-								id="sales_people"
-								className="form-select"
+                            <select
+                                onChange={(e) => setSalesPerson(e.target.value)}
+                                required
+                                name="Sales Person"
+                                id="sales_people"
+                                className="form-select"
                                 value={salesPerson}>
-								<option value="">Select a Sales Employee</option>
-								{salesPeople.map((salesPerson) => {
-									return (
-										<option key={salesPerson.id} value={salesPerson.id}>
-											{salesPerson.name}
-										</option>
-									);
-								})}
-							</select>
-						</div>
+                                <option value="">Select a Sales Employee</option>
+                                {salesPeople.map((salesPerson) => {
+                                    return (
+                                        <option key={salesPerson.id} value={salesPerson.id}>
+                                            {salesPerson.name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>
                         <div className="mb-3">
-							<select
-								onChange={(e) => setCustomer(e.target.value)}
-								required
-								name="Customer"
-								id="customer"
-								className="form-select"
+                            <select
+                                onChange={(e) => setCustomer(e.target.value)}
+                                required
+                                name="Customer"
+                                id="customer"
+                                className="form-select"
                                 value={customer}>
-								<option value="">Select a Customer</option>
-								{customers.map((customer) => {
-									return (
-										<option key={customer.id} value={customer.id}>
-											{customer.name}
-										</option>
-									);
-								})}
-							</select>
-						</div>
+                                <option value="">Select a Customer</option>
+                                {customers.map((customer) => {
+                                    return (
+                                        <option key={customer.id} value={customer.id}>
+                                            {customer.name}
+                                        </option>
+                                    );
+                                })}
+                            </select>
+                        </div>
                         <div className="form-floating mb-3">
                             <input
                                 onChange={(e) => setPrice(e.target.value)}
@@ -152,6 +152,11 @@ const SalesRecordForm = () => {
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
+                    {submitted && (
+                        <div className="alert alert-success mb-0 p-4 mt-4" id="success-message">
+                            A new sales record has been created!
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

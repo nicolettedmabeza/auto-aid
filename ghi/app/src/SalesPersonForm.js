@@ -34,7 +34,7 @@ const SalesPersonForm = () => {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Create a New Sales Employee</h1>
+                    <h1>New Sales Employee</h1>
                     <form id="create-new-sales-person-form" onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input
@@ -64,6 +64,11 @@ const SalesPersonForm = () => {
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
+                    {submitted && (
+                        <div className="alert alert-success mb-0 p-4 mt-4" id="success-message">
+                            A new employee has been added!
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

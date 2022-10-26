@@ -35,7 +35,7 @@ const CustomerForm = () => {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Create a New Customer</h1>
+                    <h1>New Customer</h1>
                     <form id="create-new-customer-form" onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input
@@ -78,6 +78,11 @@ const CustomerForm = () => {
                         </div>
                         <button className="btn btn-primary">Create</button>
                     </form>
+                    {submitted && (
+                        <div className="alert alert-success mb-0 p-4 mt-4" id="success-message">
+                            A new customer has been added!
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

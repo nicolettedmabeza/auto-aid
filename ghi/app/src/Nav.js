@@ -78,18 +78,18 @@ function Nav() {
 								className="dropdown-menu"
 								aria-labelledby="dropdownMenuButton1">
 								<li className="nav-item">
-									<NavLink className="dropdown-item" to="sales/new">
-										Add a Sales Person
+									<NavLink className="dropdown-item" to="salespeople/new">
+										Add a Sales Employee
 									</NavLink>
 								</li>
 								<li className="nav-item">
-									<NavLink className="dropdown-item" to="customer/new">
+									<NavLink className="dropdown-item" to="customers/new">
 										Add a Customer
 									</NavLink>
 								</li>
 								<li className="nav-item">
 									<NavLink className="dropdown-item" to="sales/new">
-										Record a Sale
+										Create a Sales Record
 									</NavLink>
 								</li>
 								<li className="nav-item">
@@ -99,7 +99,7 @@ function Nav() {
 								</li>
 								<li className="nav-item">
 									<NavLink className="dropdown-item" to="sales/history">
-										Salesperson History
+										Employee Sales History
 									</NavLink>
 								</li>
 							</ul>
