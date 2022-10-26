@@ -34,7 +34,7 @@ const SalesPersonForm = () => {
         <div className="row">
             <div className="offset-3 col-6">
                 <div className="shadow p-4 mt-4">
-                    <h1>Create a New Sales Person</h1>
+                    <h1>Create a New Sales Employee</h1>
                     <form id="create-new-sales-person-form" onSubmit={handleSubmit}>
                         <div className="form-floating mb-3">
                             <input

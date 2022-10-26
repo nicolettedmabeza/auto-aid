@@ -33,13 +33,13 @@ const SalesHistoryList = () => {
 
     return (
       <div>
-      <h1>Sales Person Sale History</h1>
+      <h1 className="mt-4 mb-4">Employee Sales History</h1>
       <select
         onChange={handleChange}
         id="sales-person-sales-history"
         name="Sales Person"
-        className="form-select">
-        <option value="">Choose a Sales Person</option>
+        className="form-select mb-3">
+        <option value="">Choose a Sales Employee</option>
         {salesPeople.map((salesPerson) => {
           return (
             <option key={salesPerson.id} value={salesPerson.id}>
@@ -51,7 +51,7 @@ const SalesHistoryList = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Sales Person</th>
+              <th>Sales Employee</th>
               <th>Customer</th>
               <th>Automobile VIN</th>
               <th>Sale Price</th>

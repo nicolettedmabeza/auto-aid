@@ -12,7 +12,7 @@ function Nav() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <NavLink className="nav-link" to="/salespeople/new">
-                New Sales Person
+                New Sales Employee
               </NavLink>
             </li>
             <li className="nav-item">
@@ -32,12 +32,17 @@ function Nav() {
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/sales/history">
-                Sales Person Sales History
+                Employee Sales History
               </NavLink>
             </li>
             <li className="nav-item">
               <NavLink className="nav-link" to="/automobiles/new">
                 New Automobile
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/automobiles/">
+                List of Automobiles
               </NavLink>
             </li>
           </ul>

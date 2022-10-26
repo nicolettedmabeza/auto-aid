@@ -94,7 +94,7 @@ const SalesRecordForm = () => {
 								<option value="">Select an Automobile</option>
 								{automobiles.map((automobile) => {
 									return (
-										<option key={automobile.vin} value={automobile.href}>
+										<option key={automobile.vin} value={automobile.vin}>
 											{automobile.vin}
 										</option>
 									);
@@ -109,7 +109,7 @@ const SalesRecordForm = () => {
 								id="sales_people"
 								className="form-select"
                                 value={salesPerson}>
-								<option value="">Select a Sales Person</option>
+								<option value="">Select a Sales Employee</option>
 								{salesPeople.map((salesPerson) => {
 									return (
 										<option key={salesPerson.id} value={salesPerson.id}>
