@@ -8,6 +8,5 @@ urlpatterns = [
     path("appointments/<str:pk>/", show_service_history,
          name="show_service_history"),
     path("technicians/", list_technicians, name="list_technicians"),
-    path("technicians/<int:pk>/", show_technician, name="show_technicians"),
 
 ]

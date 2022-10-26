@@ -25,7 +25,7 @@ const ManufacturerList = () => {
 						<div
 							key={manufacturer.href}
 							className="col-6 mb-2 text-center text-white">
-							<div className="p-3 border shadow bg-secondary">
+							<div className="p-3 border shadow bg-secondary view overlay zoom">
 								{manufacturer.name}
 							</div>
 						</div>
