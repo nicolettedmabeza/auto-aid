@@ -2,42 +2,32 @@ import React, { useState, useEffect } from "react";
 
 const ServiceHistory = () => {
 	const [appointments, setAppointments] = useState([]);
+	const [filtered, setFiltered] = useState([]);
 	const [searchVin, setSearchVin] = useState("");
-	const [searchSuccessful, setSearchSuccessful] = useState(false);
+	const [submitted, setSubmitted] = useState(false)
 
-	// useEffect(() => {
-	// 	const fetchAppointments = async () => {
-	// 		const url = "http://localhost:8080/api/appointments/";
-	// 		const response = await fetch(url);
+	useEffect(() => {
+		const fetchAppointments = async () => {
+			const url = "http://localhost:8080/api/appointments/";
+			const response = await fetch(url);
 
-	// 		if (response.ok) {
-	// 			const data = await response.json();
-	// 			console.log(data);
-	// 			setAppointments(data.appointments);
-	// 		}
-	// 	};
-	// 	fetchAppointments();
-	// 	// setLoaded(true);
-	// }, []);
+			if (response.ok) {
+				const data = await response.json();
+				setAppointments(data.appointments);
+			}
+		};
+		fetchAppointments();
+	}, []);
 
 	const handleSearch = async (event) => {
-		const data = { searchVin };
-		const vin = data.searchVin;
-		// console.log(vin);
-
-		const searchUrl = `http://localhost:8080/api/appointments/${vin}/`;
-		const searchResponse = await fetch(searchUrl);
-		// console.log(searchResponse);
-		if (searchResponse.ok) {
-			const searchData = await searchResponse.json();
-			console.log(searchData);
-			setAppointments(searchData);
-			// console.log(appointments);
-			setSearchSuccessful(true);
-		} else {
-			console.error("Invalid response");
-		}
+		const results = appointments.filter((appointment) => appointment.vin.includes(searchVin))
+		setFiltered(results)
+		setSubmitted(true)
 	};
+
+
+
+
 
 	return (
 		<React.Fragment>
@@ -61,7 +51,7 @@ const ServiceHistory = () => {
 					</div>
 				</div>
 			</div>
-			{appointments.length > 0 && (
+			{filtered.length > 0 && (
 				<table className="table table-striped">
 					<thead>
 						<tr>
@@ -75,32 +65,32 @@ const ServiceHistory = () => {
 						</tr>
 					</thead>
 					<tbody>
-						{appointments.map((appointment) => {
+						{filtered.map((filter) => {
 							return (
-								<tr key={appointment.id}>
-									<td>{appointment.owner}</td>
-									<td>{appointment.vin}</td>
+								<tr key={filter.id}>
+									<td>{filter.owner}</td>
+									<td>{filter.vin}</td>
 									<td>
-										{new Date(appointment.date_time).toLocaleDateString(
+										{new Date(filter.date_time).toLocaleDateString(
 											"en-US"
 										)}
 									</td>
 									<td>
-										{new Date(appointment.date_time).toLocaleTimeString([], {
+										{new Date(filter.date_time).toLocaleTimeString([], {
 											hour: "2-digit",
 											minute: "2-digit",
 										})}
 									</td>
-									<td>{appointment.technician.name}</td>
-									<td>{appointment.reason}</td>
-									<td>{appointment.finished ? "Yes" : "No"} </td>
+									<td>{filter.technician.name}</td>
+									<td>{filter.reason}</td>
+									<td>{filter.finished ? "Yes" : "No"} </td>
 								</tr>
 							);
 						})}
 					</tbody>
 				</table>
 			)}
-			{searchSuccessful && appointments.length <= 0 && (
+			{submitted && filtered.length == 0 && (
 				<div className="alert alert-danger mb-0 p-4 mt-4" id="danger-message">
 					The VIN you entered has no appointment history.
 				</div>

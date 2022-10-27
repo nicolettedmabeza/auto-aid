@@ -3,16 +3,15 @@ import { useState } from "react";
 const TechnicianForm = () => {
 	const [name, setName] = useState("");
 	const [employeeNumber, setEmployeeNumber] = useState("");
-	// const [submitted, setSubmitted] = useState(false);
-	// const [loaded, setLoaded] = useState(false);
+	const [submitted, setSubmitted] = useState(false);
+	const [invalid, setInvalid] = useState(false)
+
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const data = { name, employeeNumber };
-		data.id = data.employeeNumber;
 
-		delete data.employeeNumber;
-		console.log(data);
+		const employee_number = employeeNumber
+		const data = { name, employee_number };
 
 		const techUrl = "http://localhost:8080/api/technicians/";
 		const fetchConfig = {
@@ -25,17 +24,21 @@ const TechnicianForm = () => {
 
 		const response = await fetch(techUrl, fetchConfig);
 		if (response.ok) {
-			const newTech = await response.json();
-			console.log(newTech);
 			event.target.reset();
 			setName("");
 			setEmployeeNumber("");
-			// setSubmitted(true);
+			setSubmitted(true);
+			setInvalid("")
+		}
+		else {
+			console.error("Invalid employee number")
+			setInvalid(true)
 		}
 	};
 
 	return (
-		<div className="row">
+
+			<div className="row">
 			<div className="offset-3 col-6">
 				<div className="shadow p-4 mt-4">
 					<h1 className="text-center">Create a Technician</h1>
@@ -68,6 +71,16 @@ const TechnicianForm = () => {
 							<button className="btn btn-primary">Create</button>
 						</div>
 					</form>
+					{invalid && (
+                        <div className="alert alert-danger mb-0 p-4 mt-4" id="success-message">
+                            You have put an invalid employee number or that number is already in use.
+                        </div>
+                    )}
+					{!(invalid) && submitted && (
+                        <div className="alert alert-success mb-0 p-4 mt-4" id="success-message">
+                            You have added a new employee!
+                        </div>
+                    )}
 				</div>
 			</div>
 		</div>

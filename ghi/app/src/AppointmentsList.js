@@ -10,7 +10,6 @@ const AppointmentsList = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
 				setAppointments(data.appointments);
 			}
 		};
@@ -18,7 +17,7 @@ const AppointmentsList = () => {
 	}, []);
 
 	const deleteAppointment = async (id) => {
-		const appointmentUrl = `http://localhost:8080/api/appointments/${id}/`;
+		const appointmentUrl = `http://localhost:8080/api/appointments/detail/${id}/`;
 		const fetchConfig = {
 			method: "delete",
 			headers: {
@@ -33,7 +32,7 @@ const AppointmentsList = () => {
 	};
 
 	const finishAppointment = async (id) => {
-		const appointmentUrl = `http://localhost:8080/api/appointments/${id}/`;
+		const appointmentUrl = `http://localhost:8080/api/appointments/detail/${id}/`;
 		const fetchConfig = {
 			method: "put",
 			body: JSON.stringify({ finished: true }),
@@ -67,6 +66,7 @@ const AppointmentsList = () => {
 				</thead>
 				<tbody>
 					{appointments.map((appointment) => {
+						if (!(appointment.finished)) {
 						return (
 							<tr key={appointment.id}>
 								<td>{appointment.owner}</td>
@@ -89,16 +89,16 @@ const AppointmentsList = () => {
 										className="btn btn-secondary m-2">
 										Delete
 									</button>
-									{!appointment.finished && (
+
 										<button
 											onClick={(e) => finishAppointment(appointment.id)}
 											className="btn btn-primary">
 											Finished
 										</button>
-									)}
+
 								</td>
 							</tr>
-						);
+						)};
 					})}
 				</tbody>
 			</table>
