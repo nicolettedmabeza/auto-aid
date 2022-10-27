@@ -10,7 +10,7 @@ const VehicleModelList = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
+
 				setModels(data.models);
 			}
 		};
@@ -27,7 +27,7 @@ const VehicleModelList = () => {
 								<h5 className="card-header">{model.manufacturer.name}</h5>
 								<div className="card-body">
 									<h5 className="card-title">{model.name}</h5>
-									<img src={model.picture_url} className="card-img-top" />
+									<img src={model.picture_url} className="card-img-top" alt={model.name} />
 								</div>
 							</div>
 						</div>

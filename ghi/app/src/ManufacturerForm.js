@@ -8,8 +8,6 @@ const ManufacturerForm = () => {
 		event.preventDefault();
 		const data = { name };
 
-		console.log(data);
-
 		const url = "http://localhost:8100/api/manufacturers/";
 		const fetchConfig = {
 			method: "post",
@@ -21,8 +19,6 @@ const ManufacturerForm = () => {
 
 		const response = await fetch(url, fetchConfig);
 		if (response.ok) {
-			const newManufacturer = await response.json();
-			console.log(newManufacturer);
 			event.target.reset();
 			setName("");
 			setSubmitted(true);

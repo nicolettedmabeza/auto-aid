@@ -8,7 +8,7 @@ const AppointmentForm = () => {
 	const [selectedTechnician, setSelectedTechnician] = useState("");
 	const [reason, setReason] = useState([]);
 	const [submitted, setSubmitted] = useState(false);
-	// const [loaded, setLoaded] = useState(false);
+
 
 	useEffect(() => {
 		const fetchTechnicians = async () => {
@@ -17,24 +17,30 @@ const AppointmentForm = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
 				setTechnicians(data.technicians);
 			}
 		};
 		fetchTechnicians();
-		// setLoaded(true);
+
 	}, []);
+
+	const clearState = () => {
+		setVin("");
+		setOwner("");
+		setDateTime("");
+		setSelectedTechnician("");
+		setReason("");
+		setSubmitted(true);
+	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const data = { vin, owner, dateTime, selectedTechnician, reason };
-		data.date_time = data.dateTime;
-		data.technician_id = data.selectedTechnician;
 
-		delete data.selectedTechnician;
-		delete data.dateTime;
+		const date_time = dateTime;
+		const technician = selectedTechnician;
 
-		console.log(data);
+		const data = { vin, owner, date_time, technician, reason };
+
 
 		const appointmentUrl = "http://localhost:8080/api/appointments/";
 		const fetchConfig = {
@@ -47,15 +53,8 @@ const AppointmentForm = () => {
 
 		const response = await fetch(appointmentUrl, fetchConfig);
 		if (response.ok) {
-			const newAppointment = await response.json();
-			console.log(newAppointment);
 			event.target.reset();
-			setVin("");
-			setOwner("");
-			setDateTime("");
-			setSelectedTechnician("");
-			setReason("");
-			setSubmitted(true);
+			clearState()
 		}
 	};
 

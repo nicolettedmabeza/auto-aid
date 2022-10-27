@@ -14,7 +14,6 @@ const VehicleModelForm = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
 				setManufacturers(data.manufacturers);
 			}
 		};
@@ -23,13 +22,11 @@ const VehicleModelForm = () => {
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		const data = { name, pictureUrl, selectedManufacturer };
-		data.picture_url = data.pictureUrl;
-		data.manufacturer_id = data.selectedManufacturer;
 
-		delete data.pictureUrl;
-		delete data.selectedManufacturer;
-		console.log(data);
+		const picture_url = pictureUrl
+		const manufacturer_id = selectedManufacturer
+		const data = { name, picture_url, manufacturer_id };
+
 
 		const modelUrl = "http://localhost:8100/api/models/";
 		const fetchConfig = {
@@ -42,8 +39,6 @@ const VehicleModelForm = () => {
 
 		const response = await fetch(modelUrl, fetchConfig);
 		if (response.ok) {
-			const newModel = await response.json();
-			console.log(newModel);
 			event.target.reset();
 			setName("");
 			setPictureUrl("");

@@ -10,7 +10,6 @@ const ManufacturerList = () => {
 
 			if (response.ok) {
 				const data = await response.json();
-				console.log(data);
 				setManufacturers(data.manufacturers);
 			}
 		};
