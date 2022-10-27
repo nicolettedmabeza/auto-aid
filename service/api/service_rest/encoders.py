@@ -4,7 +4,7 @@ from .models import AutomobileVO, Technician, Appointment
 
 class TechnicianEncoder(ModelEncoder):
     model = Technician
-    properties = ["name", "id"]
+    properties = ["name", "id", "employee_number"]
 
 
 class AppointmentEncoder(ModelEncoder):
