@@ -65,7 +65,7 @@ const ServiceHistory = () => {
 					<tbody>
 						{filtered.map((filter) => {
 							return (
-								<tr key={filter.id}>
+								<tr className="table-row" key={filter.id}>
 									<td>{filter.owner}</td>
 									<td>{filter.vin}</td>
 									<td>

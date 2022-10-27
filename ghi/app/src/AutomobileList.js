@@ -30,7 +30,7 @@ const AutomobileList = () => {
 			<tbody>
 				{automobileList.map((automobile) => {
 					return (
-						<tr className="auto-row" key={automobile.id}>
+						<tr className="table-row" key={automobile.id}>
 							<td>{automobile.vin}</td>
 							<td>{automobile.color}</td>
 							<td>{automobile.year}</td>

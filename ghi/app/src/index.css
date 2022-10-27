@@ -25,7 +25,7 @@ code {
 	background-color: rgb(228, 228, 228);
 }
 
-.auto-row:hover {
+.table-row:hover {
 	/* color: rgb(14, 32, 240); */
 	background-color: rgb(154, 219, 234);
 }

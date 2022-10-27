@@ -66,39 +66,41 @@ const AppointmentsList = () => {
 				</thead>
 				<tbody>
 					{appointments.map((appointment) => {
-						if (!(appointment.finished)) {
-						return (
-							<tr key={appointment.id}>
-								<td>{appointment.owner}</td>
-								<td>{appointment.vin}</td>
-								<td>
-									{new Date(appointment.date_time).toLocaleDateString("en-US")}
-								</td>
-								<td>
-									{new Date(appointment.date_time).toLocaleTimeString([], {
-										hour: "2-digit",
-										minute: "2-digit",
-									})}
-								</td>
-								<td>{appointment.technician.name}</td>
-								<td>{appointment.reason}</td>
-								<td>{appointment.vip ? "Yes" : "No"}</td>
-								<td>
-									<button
-										onClick={(e) => deleteAppointment(appointment.id)}
-										className="btn btn-secondary m-2">
-										Delete
-									</button>
+						if (!appointment.finished) {
+							return (
+								<tr className="table-row" key={appointment.id}>
+									<td>{appointment.owner}</td>
+									<td>{appointment.vin}</td>
+									<td>
+										{new Date(appointment.date_time).toLocaleDateString(
+											"en-US"
+										)}
+									</td>
+									<td>
+										{new Date(appointment.date_time).toLocaleTimeString([], {
+											hour: "2-digit",
+											minute: "2-digit",
+										})}
+									</td>
+									<td>{appointment.technician.name}</td>
+									<td>{appointment.reason}</td>
+									<td>{appointment.vip ? "Yes" : "No"}</td>
+									<td>
+										<button
+											onClick={(e) => deleteAppointment(appointment.id)}
+											className="btn btn-secondary m-2">
+											Delete
+										</button>
 
 										<button
 											onClick={(e) => finishAppointment(appointment.id)}
 											className="btn btn-primary">
 											Finished
 										</button>
-
-								</td>
-							</tr>
-						)};
+									</td>
+								</tr>
+							);
+						}
 					})}
 				</tbody>
 			</table>

@@ -121,15 +121,14 @@ const AutomobileForm = () => {
 						<div
 							className="alert alert-danger mb-0 p-4 mt-4"
 							id="success-message">
-							You have put an invalid employee number or that number is already
-							in use.
+							This VIN has already been registered to another automobile.
 						</div>
 					)}
 					{!invalid && submitted && (
 						<div
 							className="alert alert-success mb-0 p-4 mt-4"
 							id="success-message">
-							You have added a new employee!
+							You have added a new automobile!
 						</div>
 					)}
 				</div>
