@@ -4,7 +4,7 @@ const ServiceHistory = () => {
 	const [appointments, setAppointments] = useState([]);
 	const [filtered, setFiltered] = useState([]);
 	const [searchVin, setSearchVin] = useState("");
-	const [submitted, setSubmitted] = useState(false)
+	const [submitted, setSubmitted] = useState(false);
 
 	useEffect(() => {
 		const fetchAppointments = async () => {
@@ -20,14 +20,12 @@ const ServiceHistory = () => {
 	}, []);
 
 	const handleSearch = async (event) => {
-		const results = appointments.filter((appointment) => appointment.vin.includes(searchVin))
-		setFiltered(results)
-		setSubmitted(true)
+		const results = appointments.filter((appointment) =>
+			appointment.vin.includes(searchVin)
+		);
+		setFiltered(results);
+		setSubmitted(true);
 	};
-
-
-
-
 
 	return (
 		<React.Fragment>
@@ -71,9 +69,7 @@ const ServiceHistory = () => {
 									<td>{filter.owner}</td>
 									<td>{filter.vin}</td>
 									<td>
-										{new Date(filter.date_time).toLocaleDateString(
-											"en-US"
-										)}
+										{new Date(filter.date_time).toLocaleDateString("en-US")}
 									</td>
 									<td>
 										{new Date(filter.date_time).toLocaleTimeString([], {
@@ -90,7 +86,7 @@ const ServiceHistory = () => {
 					</tbody>
 				</table>
 			)}
-			{submitted && filtered.length == 0 && (
+			{submitted && filtered.length === 0 && (
 				<div className="alert alert-danger mb-0 p-4 mt-4" id="danger-message">
 					The VIN you entered has no appointment history.
 				</div>
