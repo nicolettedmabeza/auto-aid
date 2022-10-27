@@ -10,16 +10,17 @@ const SalesRecordForm = () => {
     const [price, setPrice] = useState("");
     const [submitted, setSubmitted] = useState(false);
 
-    useEffect(() => {
-        async function fetchAutomobiles() {
-            const url = "http://localhost:8090/api/automobiles/";
-            const response = await fetch(url);
+    async function fetchAutomobiles() {
+        const url = "http://localhost:8090/api/automobiles/";
+        const response = await fetch(url);
 
-            if (response.ok) {
-                const data = await response.json();
-                setAutomobiles(data.automobiles);
-            }
+        if (response.ok) {
+            const data = await response.json();
+            setAutomobiles(data.automobiles);
         }
+    }
+
+    useEffect(() => {
         fetchAutomobiles();
     }, []);
 
@@ -74,6 +75,7 @@ const SalesRecordForm = () => {
             setCustomer("");
             setPrice("");
             setSubmitted(true);
+            fetchAutomobiles();
         }
     };
 
