@@ -9,6 +9,8 @@ Team:
 
 CarCar is an application for managing aspects of an automobile dealership, specifically for its inventory, service center, and sales.
 
+In our application we utilized the approach of Domain Driven Design to create the architecture based on our problem domain. With this approach we defined three bounded contexts which led us to create microservices based on those contexts.
+
 The application was designed with three microservices: the inventory, automobile services, and auto sales. Below is a diagram that further details the relationships between these services with the frontend. The backend of the application was developed with a Django framework and Python. The frontend of the application was developed with React.
 
 <img src="./document/CarCarDesign.png" />
@@ -47,9 +49,15 @@ On the Service microservice you can:
 - View a list of appointments that have not been finished and view the VIP status of each vehicle
 - View the service appointment history (both finished and unfinished) of a specific vehicle by searching the VIN number
 
+The models within the sales microservice include:
+
+- Appointment Model: a representation of an appointment with attributes of vin, owner, data/time, technician, reason, vip, and finished.
+- Technician Model: a representation of a technician with attributes of name and employee_number
+- AutomobileVO: a representation of getting automobile data from the Inventory API with attributes of VIN and import_href.
+
 The Service microservices is in charge of service appointments and technicians. With appointments you are able to create an appointment, view a list of active appointments, and view a vehicle’s appointment history (both finished and unfinished appointments) by searching the VIN number. You are also able to create a technician within the services microservice, which then can be utilized when creating an appointment to select a specific technician.
 
-The Service microservice poller gets data from the inventory microservice - more specifically from its automobile API. The data we are extracting is the VIN information from the inventory. We can use this information to crosscheck if a VIN entered into an appointment form has previously been in the Automobile inventory. If so, this notifies the concierge to give the customer “VIP” treatment.
+The Service microservice poller gets data from the inventory microservice - more specifically from its automobile API. The data we are extracting is the VIN information from the inventory and creating an Automobile VO object. We can use this information to crosscheck if a VIN entered into an appointment form has previously been in the Automobile inventory. If so, this notifies the concierge to give the customer “VIP” treatment.
 
 The Service microservice is on port 8080 and has a url of http://localhost:8080. The api endpoints include:
 
@@ -59,6 +67,7 @@ The Service microservice is on port 8080 and has a url of http://localhost:8080.
 | Create appointment | POST | `http://localhost:8080/api/appointments/`
 | Get a specific appointment by VIN | GET | `http://localhost:8080/api/appointments/<str:vin>/`
 | Get a specific appointment | GET | `http://localhost:8080/api/appointments/detail/<int:pk>/`
+| Update a specific appointment | PUT | `http://localhost:8080/api/appointments/detail/<int:pk>/`
 | Delete a specific appointment | DELETE | `http://localhost:8080/api/appointments/detail/<int:pk>/`
 | List technicians | GET | `http://localhost:8080/api/technicians/`
 | Create technician | POST | `http://localhost:8080/api/technicians/`
@@ -70,63 +79,197 @@ The Service microservice is on port 8080 and has a url of http://localhost:8080.
 #### List appointments (GET)
 ##### Example Response
 ```json
-
+{
+	"appointments": [
+		{
+			"href": "/api/appointments/detail/1/",
+			"id": 1,
+			"vin": "1G1JC1243T7246823",
+			"owner": "Bob Belcher",
+			"date_time": "2022-10-27T10:00:00+00:00",
+			"technician": {
+				"href": "/api/technicians/3/",
+				"name": "Louise Belcher",
+				"id": 3,
+				"employee_number": 1003
+			},
+			"reason": "Tire change",
+			"vip": false,
+			"finished": false
+		}
+	]
+}
 ```
 
 #### Create appointment (POST)
 ##### Example Request
 ```json
-
+{
+	"vin": "WDBRN40J54A591238",
+	"owner": "Linda Belcher",
+	"date_time": "2022-10-27T10:00:00+00:00",
+	"technician": 3,
+	"reason": "Oil change",
+	"vip": false,
+	"finished": false
+}
 ```
 ##### Example Response
 ```json
-
+{
+	"href": "/api/appointments/detail/4/",
+	"id": 4,
+	"vin": "WDBRN40J54A591238",
+	"owner": "Linda Belcher",
+	"date_time": "2022-10-27T10:00:00+00:00",
+	"technician": {
+		"href": "/api/technicians/3/",
+		"name": "Louise Belcher",
+		"id": 3,
+		"employee_number": 1003
+	},
+	"reason": "Oil change",
+	"vip": false,
+	"finished": false
+}
 ```
 
 #### Get a specific appointment by VIN (GET)
 ##### Example Response
 ```json
-
+{
+	"appointments": [
+		{
+			"href": "/api/appointments/detail/1/",
+			"id": 1,
+			"vin": "1G1JC1243T7246823",
+			"owner": "Bob Belcher",
+			"date_time": "2022-10-27T10:00:00+00:00",
+			"technician": {
+				"href": "/api/technicians/3/",
+				"name": "Louise Belcher",
+				"id": 3,
+				"employee_number": 1003
+			},
+			"reason": "Tire change",
+			"vip": false,
+			"finished": false
+		}
+	]
+}
 ```
 
 #### Get a specific appointment (GET)
 ##### Example Response
 ```json
+{
+	"href": "/api/appointments/detail/4/",
+	"id": 4,
+	"vin": "WDBRN40J54A591238",
+	"owner": "Linda Belcher",
+	"date_time": "2022-10-27T10:00:00+00:00",
+	"technician": {
+		"href": "/api/technicians/3/",
+		"name": "Louise Belcher",
+		"id": 3,
+		"employee_number": 1003
+	},
+	"reason": "Oil change",
+	"vip": false,
+	"finished": false
+}
+```
 
+#### Update a specific appointment (PUT)
+##### Example Request
+```json
+{
+	"vin": "WDBRN40J54A591238",
+	"owner": "Linda Belcher",
+	"date_time": "2022-10-27T10:00:00+00:00",
+	"technician": 3,
+	"reason": "Paint job",
+	"vip": false,
+	"finished": false
+}
+```
+##### Example Response
+```json
+{
+	"href": "/api/appointments/detail/4/",
+	"id": 4,
+	"vin": "WDBRN40J54A591238",
+	"owner": "Linda Belcher",
+	"date_time": "2022-10-27T10:00:00+00:00",
+	"technician": {
+		"href": "/api/technicians/3/",
+		"name": "Louise Belcher",
+		"id": 3,
+		"employee_number": 1003
+	},
+	"reason": "Paint job",
+	"vip": false,
+	"finished": false
+}
 ```
 
 #### Delete a specific appointment (DELETE)
 ##### Example Response
 ```json
-
+{
+	"message": "Appointment deleted"
+}
 ```
 
 #### List technicians (GET)
 ##### Example Response
 ```json
-
+{
+	"technicians": [
+		{
+			"href": "/api/technicians/1/",
+			"name": "Bob Belcher",
+			"id": 1,
+			"employee_number": 1001
+		}
+}
 ```
 
 #### Create technician (POST)
 ##### Example Request
 ```json
-
+{
+	"name": "Gene Belcher",
+	"employee_number": 1005
+}
 ```
 ##### Example Response
 ```json
-
+{
+	"href": "/api/technicians/5/",
+	"name": "Gene Belcher",
+	"id": 5,
+	"employee_number": 1005
+}
 ```
 
 #### Get a specific technician (GET)
 ##### Example Response
 ```json
-
+{
+	"href": "/api/technicians/3/",
+	"name": "Louise Belcher",
+	"id": 3,
+	"employee_number": 1003
+}
 ```
 
 #### Delete a specific technician (DELETE)
 ##### Example Response
 ```json
-
+{
+	"message": "Technician deleted"
+}
 ```
 
 
