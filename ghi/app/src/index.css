@@ -15,3 +15,17 @@ code {
 .checked {
 	color: orange;
 }
+
+.test:hover {
+	box-shadow: 0px 0px 16px 4px rgba(255, 255, 255, 0.4);
+}
+
+.model-list:hover {
+	color: rgb(11, 0, 0);
+	background-color: rgb(228, 228, 228);
+}
+
+.auto-row:hover {
+	/* color: rgb(14, 32, 240); */
+	background-color: rgb(154, 219, 234);
+}

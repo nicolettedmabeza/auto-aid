@@ -23,11 +23,15 @@ const VehicleModelList = () => {
 				{models.map((model) => {
 					return (
 						<div key={model.id} className="col-lg-4 d-flex align-items-stretch">
-							<div className="card-body mb-3 shadow">
+							<div className="model-list card-body mb-3 shadow">
 								<h5 className="card-header">{model.manufacturer.name}</h5>
 								<div className="card-body">
 									<h5 className="card-title">{model.name}</h5>
-									<img src={model.picture_url} className="card-img-top" alt={model.name} />
+									<img
+										src={model.picture_url}
+										className="card-img-top"
+										alt={model.name}
+									/>
 								</div>
 							</div>
 						</div>
