@@ -5,8 +5,6 @@ import json
 from common.json import ModelEncoder
 from .models import AutomobileVO, SalesPerson, Customer, SalesRecord
 
-# Create your views here.
-
 
 class AutomobileVOEncoder(ModelEncoder):
     model = AutomobileVO
@@ -214,7 +212,6 @@ def api_list_sales_records(request, employee_id=None):
             content["customer"] = customer
 
             sales_record = SalesRecord.objects.create(**content)
-            print(sales_record)
             automobile.has_sold = True
             automobile.save()
             return JsonResponse(
