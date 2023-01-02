@@ -20,8 +20,9 @@ import AutomobileList from './AutomobileList';
 function App() {
 	return (
 		<BrowserRouter>
-			<Nav />
-			<div className="container">
+			<div class="min-vh-100">
+
+				<Nav />
 				<Routes>
 					<Route path="/" element={<MainPage />} />
 					<Route path="technicians/new/" element={<TechnicianForm />} />
@@ -31,7 +32,6 @@ function App() {
 						<Route path="history/" element={<ServiceHistory />} />
 					</Route>
 					<Route path="manufacturers/">
-						<Route path="" element={<ManufacturerList />} />
 						<Route path="new/" element={<ManufacturerForm />} />
 					</Route>
 					<Route path="models/">
