@@ -1,4 +1,4 @@
-# CarCar
+# Auto Aid
 
 Team:
 
@@ -7,7 +7,7 @@ Team:
 
 ## Design
 
-CarCar is an application for managing aspects of an automobile dealership, specifically for its inventory, service center, and sales.
+Auto Aid is an application for managing aspects of an automobile dealership, specifically for its inventory, service center, and sales.
 
 In our application we utilized the approach of Domain Driven Design to create the architecture based on our problem domain. With this approach we defined three bounded contexts which led us to create microservices based on those contexts.
 
